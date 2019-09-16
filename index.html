@@ -5,53 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Train Scheduler</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <!-- Personal CSS (if needed) -->
-    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
 </head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+
+
+
 
 <body>
     <div class="container">
-        <!-- Content here -->
-        <!-- JUMBOTRON -->
-        <div class="jumbotron">
-            <h1 class="display-4">Train Schedule Finder</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention
-                to featured content or information.</p>
-            <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        <div class="card">
+            <div class="card-body">
+                Employee List
+            </div>
         </div>
 
-        <!-- CURRENT TRAIN SCHEDULE -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Employee Name</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">Months Worked</th>
+                    <th scope="col">Monthly Rate</th>
+                    <th scope="col">Total Earned</th>
+                </tr>
 
-        <!-- ADD TRAIN FORM -->
-        <form>
-                <div class="form-group">
-                  <label for="exampleFormControlInput1">Train Name</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Train Name">
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlInput1">Destination</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Destination">
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlInput1">First Train Time</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="First Train Time">
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlInput1">Frequency</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Frequency">
-                </div>
-                
-              </form>
-    </div>
+            </thead>
+            <tbody id="table">
 
-    <script src="script.js"></script>
+            </tbody>
+        </table>
+        <div class="container">
+            <form>
+                <div class="form-group">
+                    <label for="Name">Name</label>
+                    <input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Name of Employee">
+                </div>
+                <div class="form-group">
+                    <label for="Role">Role</label>
+                    <input type="text" class="form-control" id="role" aria-describedby="roleHelp" placeholder="Role of Employee">
+                </div>
+                <div class="form-group">
+                    <label for="Date">Start Date (mm/dd/YYYY)</label>
+                    <input type="text" class="form-control" id="startDate" aria-describedby="DateHelp" placeholder="01/25/1964">
+                </div>
+                <div class="form-group">
+                    <label for="Rate">Monthly Rate</label>
+                    <input type="text" class="form-control" id="monthlyRate" aria-describedby="RateHelp" placeholder="5000">
+                </div>
+
+                <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
 </body>
 
 </html>
