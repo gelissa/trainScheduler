@@ -1,3 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #D7B8FF;
+}
+
+.container {
+    background-color: rgb(196, 152, 193);
+}
+
+.jumbotron {
+    background-color: rgb(160, 121, 214, 0.5);
+}
+
+.th {
+    background-color: rgb(160, 121, 214, 0.5);
+}
+
 h1 {
     text-align: center;
 }
