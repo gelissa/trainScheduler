@@ -10,6 +10,12 @@ body {
 
 .container {
     background-color: rgb(196, 152, 193);
+    margin-bottom: 25px;
+    margin-top: 5px;
+}
+
+.btn {
+    margin-bottom: 10px;
 }
 
 .jumbotron {
