@@ -35,7 +35,9 @@ $("#add-train").on("click", function (event) {
     firstTrain = $("#firstTrain").val().trim();
     // trainNextArrival = $("#train-input").val().trim();
     // trainMinutesAway = $("#train-input").val().trim();
-
+    if (trainName === "" || trainDestination === "" || trainFrequency === "" || firstTrain === ""){
+        alert("Please add your information!");
+    } else {
     // console party
     console.log(trainName);
     console.log(trainDestination);
@@ -61,7 +63,7 @@ $("#add-train").on("click", function (event) {
     $("#firstTrain").val("");
     // $("#train-input").val("");
     // $("#train-input").val("");
-
+    }
 });
 
 database.ref().on("child_added", function (snapshot) {
@@ -74,26 +76,28 @@ database.ref().on("child_added", function (snapshot) {
     var tFirst = snapshot.val().train;
     // =========================================
     // next arrival and minutes away calcs here
-
+    {
     // Assumptions
     var tFrequency = tFreq;
     // 5;
 
     // Time is 3:30 AM
-    var firstTime = firstTrain;
+    var firstTime = tFirst;
+    // firstTrain;
     // "03:30";
 
     // First Time (pushed back 1 year to make sure it comes before current time)
-    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    var firstTimeConverted = moment(firstTime, "HH:mm A").subtract(1, "years");
     console.log(firstTimeConverted);
 
     // Current Time
     var currentTime = moment();
-    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+    console.log("CURRENT TIME: " + moment(currentTime).format("HH:mm A"));
 
     // Difference between the times
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
     console.log("DIFFERENCE IN TIME: " + diffTime);
+    console.log(tFrequency);
 
     // Time apart (remainder)
     var tRemainder = diffTime % tFrequency;
@@ -105,9 +109,47 @@ database.ref().on("child_added", function (snapshot) {
 
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
-    // =========================================
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm A"));
 
+    var nextTrainDisplay = moment(nextTrain).format("hh:mm A");
+    // =========================================
+ }
+// ATTEMPT TWO
+ // Assumptions
+  {
+//      var tFrequency = 5;
+
+//  // Time is 3:30 AM
+//  var firstTime = "03:30";
+// //  var firstTimePretty = moment.unix(firstTime).format("HH:mm");
+
+//  // First Time (pushed back 1 year to make sure it comes before current time)
+//  var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+//  console.log(firstTimeConverted);
+// // //  firstTimePretty Attempt
+// //  var firstTimeConverted = moment(firstTimePretty, "HH:mm").subtract(1, "years");
+// //  console.log(firstTimeConverted);
+
+//  // Current Time
+//  var currentTime = moment();
+//  console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+//  // Difference between the times
+//  var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+//  console.log("DIFFERENCE IN TIME: " + diffTime);
+
+//  // Time apart (remainder)
+//  var tRemainder = diffTime % tFrequency;
+//  console.log(tRemainder);
+
+//  // Minute Until Train
+//  var tMinutesTillTrain = tFrequency - tRemainder;
+//  console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+//  // Next Train
+//  var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+//  console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm A"));
+ }
     var tr = $("<tr>");
     // dispay results inside table
     // create vars to hold table elements and content
@@ -117,9 +159,12 @@ database.ref().on("child_added", function (snapshot) {
         "<td>" + tDest + "</td>",
         "<td>" + tFreq + "</td>",
         "<td> " + tFirst + "</td>",
-        "<td>" + nextTrain + "</td>",
+        "<td>" + nextTrainDisplay + "</td>",
+        // "<td>" + moment(nextTrain).format("hh:mm") + "</td>",
         "<td>" + tMinutesTillTrain + "</td>",
     );
     // append to tbody element
     $("tbody").append(tr);
 });
+
+// troubleshooting: cannot get arrival time to appear in actual time instead of unix
